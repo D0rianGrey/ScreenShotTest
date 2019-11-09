@@ -1,0 +1,11 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - ashot_CompletePage",
+            "request": "launch",
+            "mainClass": "AShotFramework.ashot_CompletePage",
+            "projectName": "ScreenShotTest"
+        }
+    ]
+}
