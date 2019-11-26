@@ -1,10 +1,13 @@
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import ru.yandex.qatools.ashot.AShot;
 import ru.yandex.qatools.ashot.Screenshot;
 import ru.yandex.qatools.ashot.comparison.ImageDiff;
 import ru.yandex.qatools.ashot.comparison.ImageDiffer;
+import ru.yandex.qatools.ashot.shooting.ShootingStrategies;
 
 import javax.imageio.ImageIO;
 import java.io.File;
@@ -23,11 +26,18 @@ public class Ashot {
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         driver.get(url);
 
+        //Gmaillink
+        WebElement gmailLink = driver.findElement(By.xpath("//a[@class='gb_g' and contains(text(),'Gmail')]"));
+
 
         //Actual
-        Screenshot actualScreenshot = new AShot().takeScreenshot(driver);
-        //ActualwithIngore
-        /*Screenshot actualScreenshot = new AShot()
+        Screenshot actualScreenshot = new AShot().shootingStrategy(ShootingStrategies.viewportPasting(100)).takeScreenshot(driver);
+
+        //Actual only gmail link
+        //Screenshot actualScreenshot = new AShot().takeScreenshot(driver);
+
+        /*//ActualwithIngore
+        Screenshot actualScreenshot = new AShot()
                 .coordsProvider(new WebDriverCoordsProvider())
                 .addIgnoredElement(By.xpath("//a[@class='gb_g' and contains(text(),'Gmail')]"))
                 .takeScreenshot(driver);*/
